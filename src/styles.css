@@ -1,0 +1,11 @@
+.erroMsgStyle {
+  background: white !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center;
+  color: #F53C56 !important;
+  font-size: 10px;
+  font-weight: 500 !important;
+  background: transparent !important;
+}/* You can add global styles to this file, and also import other style files */
