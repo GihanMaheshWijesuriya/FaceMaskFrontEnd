@@ -62,8 +62,6 @@ export class AppComponent implements OnInit {
       // tslint:disable-next-line:no-unused-expression
       new Date(startRange.setMinutes(startRange.getMinutes() - this.threshold.value));
 
-      console.log(selectedTime);
-
       if (this.faceMaskDetails.length !== 0) {
 
         for (let i = 0; i < this.faceMaskDetails.length; i++) {
@@ -73,16 +71,16 @@ export class AppComponent implements OnInit {
 
           const todayDay = new Date();
 
-          if (tempDate.toDateString() < todayDay.toDateString()) {
+          if (tempDate.toDateString() < selectedTime.toDateString()) {
             this.faceMaskDetails[i].status = 'previous records';
           } else {
             if (startRange <= tempDate && tempDate <= endRange) {
               this.faceMaskDetails[i].status = 'in';
               this.includedTimes.push(this.faceMaskDetails[i]);
-            } else if (tempDate <= startRange) {
-              this.faceMaskDetails[i].status = 'error';
+            } else if (tempDate < startRange) {
+              this.faceMaskDetails[i].status = 'previous records';
               this.includedTimes.push(this.faceMaskDetails[i]);
-            } else if (startRange <= tempDate && tempDate <= endShiftTime) {
+            } else if (endRange <= tempDate && tempDate <= endShiftTime) {
               this.faceMaskDetails[i].status = 'late';
               this.includedTimes.push(this.faceMaskDetails[i]);
             } else {
