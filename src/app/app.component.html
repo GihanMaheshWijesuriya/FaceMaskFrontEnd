@@ -7,8 +7,19 @@
         </div>
         <div class="col-md-12 justify-content-center align-items-center"><h4 class="font-weight-bold" style="font-size: 22px;color: #41414e">Face Mask Detection Informations</h4></div>
         <div class="col-md-12 row w-100 m-0 p-2 text-center mt-3">
+          <!--          <div class="col-md-6 justify-content-center m-0 p-0 row"></div>-->
+          <label for="inTimeInput" class="font-weight-bold" style="color: #41414e">Time Threshold ( minutes )</label>
+          <input class="col-md-12 form-control" id="threshold" type="number" formControlName="threshold" required>
+          <div *ngIf="threshold.invalid && (threshold.dirty || threshold.touched)"
+               class="alert alert-danger erroMsgStyle col-md-12 mt-2">
+            <div *ngIf="threshold.errors.required">
+              Threshold is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 row w-100 m-0 p-2 text-center mt-3">
 <!--          <div class="col-md-6 justify-content-center m-0 p-0 row"></div>-->
-          <label for="inTimeInput" class="font-weight-bold" style="color: #41414e">Shift Start Time ( time threshold - 20m )</label>
+          <label for="inTimeInput" class="font-weight-bold" style="color: #41414e">Shift Start Time</label>
           <input class="col-md-12 form-control" id="inTimeInput" type="datetime-local" id="meeting-time" formControlName="inTIme" required>
           <div *ngIf="inTIme.invalid && (inTIme.dirty || inTIme.touched)"
                class="alert alert-danger erroMsgStyle col-md-12 mt-2">

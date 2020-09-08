@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
 
   faceMaskForm = new FormGroup({
     inTIme: new FormControl('', [Validators.required]),
-    outTIme: new FormControl('', [Validators.required])
+    outTIme: new FormControl('', [Validators.required]),
+    threshold: new FormControl('', [Validators.required]),
   });
 
   get inTIme() {
@@ -22,6 +23,10 @@ export class AppComponent implements OnInit {
 
   get outTIme() {
     return this.faceMaskForm.get('outTIme');
+  }
+
+  get threshold() {
+    return this.faceMaskForm.get('threshold');
   }
 
   faceMaskDetails: Array<any> = [];
@@ -33,6 +38,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllFaceDetails();
+
+    this.threshold.setValue(20);
 
     const today = new Date();
     const tempDate = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
@@ -51,9 +58,9 @@ export class AppComponent implements OnInit {
       const startRange = new Date(this.inTIme.value);
       const endRange = new Date(this.inTIme.value);
       // tslint:disable-next-line:no-unused-expression
-      new Date(endRange.setMinutes(endRange.getMinutes() + 20));
+      new Date(endRange.setMinutes(endRange.getMinutes() + this.threshold.value));
       // tslint:disable-next-line:no-unused-expression
-      new Date(startRange.setMinutes(startRange.getMinutes() - 20));
+      new Date(startRange.setMinutes(startRange.getMinutes() - this.threshold.value));
 
       console.log(selectedTime);
 
